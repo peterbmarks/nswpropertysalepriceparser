@@ -41,7 +41,7 @@ def main():
     
     for azipfile in files:
         zip_file_path = os.path.join(DOWNLOAD_DIR, azipfile)
-        print(f"opening {zip_file_path}")
+        print(f"Opening {zip_file_path}...")
         try:
             archive = zipfile.ZipFile(zip_file_path)
             data_file_list = archive.namelist()
@@ -54,9 +54,9 @@ def main():
                             for field in fields:
                                 print("%s\t" %field, end='', file=outfile)
                             print(file=outfile)
-        except:
-            continue
-            #print(f"Error opening {azipfile}")
+        except Exception as e:
+            print(f"Exception {e} in {azipfile}")
+    outfile.close()
 
 
 def printFieldHeaders(outfile):
