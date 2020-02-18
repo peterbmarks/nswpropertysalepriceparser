@@ -4,6 +4,7 @@
 # Directory that contains the zip files
 
 DOWNLOAD_DIR = "Downloads"
+OUTFILE_NAME = "out.csv"
 
 FIELD_NAMES = ["Record Type",
 "District Code",
@@ -34,11 +35,13 @@ import os
 import zipfile
 
 def main():
-    printFieldHeaders()
+    outfile = open(OUTFILE_NAME, "w")
+    printFieldHeaders(outfile)
     files = os.listdir(DOWNLOAD_DIR)
+    
     for azipfile in files:
         zip_file_path = os.path.join(DOWNLOAD_DIR, azipfile)
-        #print(f"opening {zip_file_path}")
+        print(f"opening {zip_file_path}")
         try:
             archive = zipfile.ZipFile(zip_file_path)
             data_file_list = archive.namelist()
@@ -49,17 +52,17 @@ def main():
                         if lineStr.startswith("B"):
                             fields = lineStr.strip().split(";")
                             for field in fields:
-                                print("%s\t" %field, end='')
-                            print()
+                                print("%s\t" %field, end='', file=outfile)
+                            print(file=outfile)
         except:
             continue
             #print(f"Error opening {azipfile}")
 
 
-def printFieldHeaders():
+def printFieldHeaders(outfile):
     for fieldName in FIELD_NAMES:
-        print("%s\t" %fieldName, end='')
-    print()
+        print("%s\t" %fieldName, end='', file=outfile)
+    print(file=outfile)
 
 
 if __name__ == "__main__":
