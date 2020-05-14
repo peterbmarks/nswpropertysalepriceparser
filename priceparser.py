@@ -3,7 +3,7 @@
 # B;001;4229165;5;20190805 01:00;;;86;MAURICE RD;POKOLBIN;2320;1.038;H;20190613;20190725;850000;;R;RESIDENCE;;;;0;AP418234;
 # Directory that contains the zip files
 
-DOWNLOAD_DIR = "Downloads"
+DOWNLOAD_DIR = "Downloads"  # folder name that contains the zip files
 OUTFILE_NAME = "out.csv"
 
 FIELD_NAMES = ["Record Type",
